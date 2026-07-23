@@ -784,3 +784,85 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
     .auth-form-panel { padding: 24px; }
     .policy-content { padding: 20px; }
 }
+
+
+/* ─── My Bookings Page ─── */
+.bookings-section { padding: 40px 0; }
+.bookings-list { max-width: 900px; margin: 0 auto; }
+.booking-card {
+    background: var(--white); border-radius: var(--radius-lg); margin-bottom: 16px;
+    box-shadow: var(--shadow); border: 1px solid var(--gray-200); overflow: hidden;
+}
+.booking-card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; background: var(--gray-100); border-bottom: 1px solid var(--gray-200);
+}
+.ref-label { font-size: 12px; color: var(--gray-600); margin-right: 4px; }
+.booking-status {
+    padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;
+}
+.status-confirmed { background: #d4edda; color: #155724; }
+.status-pending { background: #fff3cd; color: #856404; }
+.status-cancelled { background: #f8d7da; color: #721c24; }
+.status-refunded { background: #d1ecf1; color: #0c5460; }
+.booking-card-body { padding: 20px; }
+.booking-route { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+.booking-city { text-align: center; }
+.booking-city strong { display: block; font-size: 20px; color: var(--dark); }
+.booking-city small { color: var(--gray-500); font-size: 12px; }
+.booking-arrow { flex: 1; text-align: center; }
+.booking-airline { display: block; font-size: 12px; color: var(--gray-600); margin-bottom: 4px; }
+.arrow-line { height: 2px; background: var(--gray-300); position: relative; margin: 4px 20px; }
+.arrow-line i { position: absolute; right: -4px; top: -7px; color: var(--primary); font-size: 14px; }
+.booking-duration { font-size: 11px; color: var(--gray-500); display: block; margin-top: 4px; }
+.booking-meta { display: flex; gap: 16px; font-size: 12px; color: var(--gray-600); }
+.booking-meta i { color: var(--primary); margin-right: 4px; }
+.booking-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; border-top: 1px solid var(--gray-200);
+}
+.booking-price span { font-size: 12px; color: var(--gray-500); }
+.booking-price strong { font-size: 18px; color: var(--primary); margin-left: 8px; }
+.booking-actions { display: flex; gap: 10px; align-items: center; }
+.pnr-badge { font-size: 12px; background: var(--gray-100); padding: 4px 10px; border-radius: 4px; color: var(--gray-700); }
+.btn-outline-sm {
+    padding: 6px 14px; border: 1px solid var(--danger); color: var(--danger);
+    border-radius: var(--radius); font-size: 12px; font-weight: 500;
+}
+.btn-outline-sm:hover { background: var(--danger); color: var(--white); }
+
+/* ─── Profile Page ─── */
+.profile-section { padding: 40px 0; }
+.profile-layout { display: grid; grid-template-columns: 260px 1fr; gap: 30px; }
+.profile-sidebar { background: var(--white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow); height: fit-content; }
+.profile-avatar { text-align: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--gray-200); }
+.avatar-circle {
+    width: 72px; height: 72px; border-radius: 50%; background: var(--primary);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 12px;
+    color: var(--white); font-size: 24px; font-weight: 700;
+}
+.profile-avatar h3 { font-size: 16px; margin-bottom: 2px; }
+.profile-avatar p { font-size: 12px; color: var(--gray-500); }
+.profile-nav a {
+    display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+    border-radius: var(--radius); color: var(--gray-700); font-size: 14px; margin-bottom: 4px;
+}
+.profile-nav a:hover, .profile-nav a.active { background: var(--primary-light); color: var(--primary); }
+.profile-main { background: var(--white); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow); }
+.profile-main h2 { font-size: 18px; margin: 24px 0 12px; padding-top: 20px; border-top: 1px solid var(--gray-200); }
+.profile-main h2:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+.form-hint { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+
+/* ─── Forgot Password Page ─── */
+.forgot-wrapper { max-width: 480px; margin: 0 auto; padding: 40px 0; }
+.forgot-form-box { background: var(--white); border-radius: var(--radius-xl); padding: 40px; box-shadow: var(--shadow-lg); text-align: center; }
+.forgot-icon { font-size: 48px; color: var(--primary); margin-bottom: 16px; }
+.forgot-form-box h2 { margin-bottom: 8px; }
+.forgot-form-box p { color: var(--gray-600); margin-bottom: 24px; font-size: 14px; }
+.forgot-form-box .form-group { text-align: left; }
+
+@media (max-width: 768px) {
+    .profile-layout { grid-template-columns: 1fr; }
+    .booking-route { flex-direction: column; gap: 8px; }
+    .booking-card-footer { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
