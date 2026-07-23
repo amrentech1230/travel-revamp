@@ -5,6 +5,7 @@
  */
 $pageTitle = 'Complete Your Booking';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 // Must be logged in
 requireLogin();
@@ -162,8 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <p class="confirm-email"><i class="fas fa-envelope"></i> Confirmation sent to <?php echo $_SESSION['user_email']; ?></p>
             <div class="confirm-actions">
-                <a href="/my-bookings.php" class="btn-primary">View My Bookings</a>
-                <a href="/" class="btn-outline">Search More Flights</a>
+                <a href="<?php echo $base; ?>/my-bookings.php" class="btn-primary">View My Bookings</a>
+                <a href="<?php echo $base; ?>/" class="btn-outline">Search More Flights</a>
             </div>
         </div>
     </div>
@@ -185,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/checkout.php?flight=<?php echo $flightIdx; ?>" id="checkoutForm" novalidate>
+                <form method="POST" action="<?php echo $base; ?>/checkout.php?flight=<?php echo $flightIdx; ?>" id="checkoutForm" novalidate>
                     <?php echo csrfField(); ?>
 
                     <!-- Flight Summary Card -->
@@ -399,7 +400,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label class="checkbox-label">
                             <input type="checkbox" name="agree" value="1" required>
                             <span class="checkmark"></span>
-                            I agree to the <a href="/terms-conditions.php" target="_blank">Terms</a>, <a href="/privacy-policy.php" target="_blank">Privacy Policy</a> & <a href="/refund-policy.php" target="_blank">Refund Policy</a>
+                            I agree to the <a href="<?php echo $base; ?>/terms-conditions.php" target="_blank">Terms</a>, <a href="<?php echo $base; ?>/privacy-policy.php" target="_blank">Privacy Policy</a> & <a href="<?php echo $base; ?>/refund-policy.php" target="_blank">Refund Policy</a>
                         </label>
                     </div>
 

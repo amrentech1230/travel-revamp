@@ -10,4 +10,4 @@ session_destroy();
 // Start new session to set flash
 session_start();
 setFlash('success', 'You have been logged out successfully.');
-redirect('/');
+redirect(BASE_PATH . '/');

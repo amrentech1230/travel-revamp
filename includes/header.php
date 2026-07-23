@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/config.php';
 $currentPage = basename($_SERVER['PHP_SELF'], '.php');
+$base = BASE_PATH;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +19,11 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- AOS Animate On Scroll -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-    <?php if (isset($extraCSS)) echo $extraCSS; ?>
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="<?php echo $base; ?>/assets/css/style.css">
 </head>
 <body class="page-<?php echo $currentPage; ?>">
 
@@ -34,8 +36,8 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
             <span><i class="fas fa-envelope"></i> <?php echo SITE_EMAIL; ?></span>
         </div>
         <div class="topbar-right">
-            <a href="/about.php">About Us</a>
-            <a href="/contact.php">Support 24/7</a>
+            <a href="<?php echo $base; ?>/about.php">About Us</a>
+            <a href="<?php echo $base; ?>/contact.php">Support 24/7</a>
         </div>
     </div>
 </div>
@@ -44,16 +46,16 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 <header class="site-header <?php echo $currentPage === 'index' ? 'header-transparent' : 'header-solid'; ?>">
     <div class="container header-inner">
         <!-- Logo -->
-        <a href="/" class="logo">
-            <span class="logo-primary">Travenso</span><span class="logo-accent">Travel</span>
+        <a href="<?php echo $base; ?>/" class="logo">
+            <span class="logo-primary">Travenzo</span><span class="logo-accent">Travel</span>
         </a>
 
         <!-- Desktop Nav -->
         <nav class="main-nav" id="mainNav">
             <ul>
-                <li><a href="/" class="<?php echo $currentPage === 'index' ? 'active' : ''; ?>"><i class="fas fa-plane"></i> Flights</a></li>
-                <li><a href="/about.php" class="<?php echo $currentPage === 'about' ? 'active' : ''; ?>">About</a></li>
-                <li><a href="/contact.php" class="<?php echo $currentPage === 'contact' ? 'active' : ''; ?>">Contact</a></li>
+                <li><a href="<?php echo $base; ?>/" class="<?php echo $currentPage === 'index' ? 'active' : ''; ?>"><i class="fas fa-plane"></i> Flights</a></li>
+                <li><a href="<?php echo $base; ?>/about.php" class="<?php echo $currentPage === 'about' ? 'active' : ''; ?>">About</a></li>
+                <li><a href="<?php echo $base; ?>/contact.php" class="<?php echo $currentPage === 'contact' ? 'active' : ''; ?>">Contact</a></li>
             </ul>
         </nav>
 
@@ -67,15 +69,15 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                         <i class="fas fa-chevron-down"></i>
                     </button>
                     <div class="user-dropdown" id="userDropdown">
-                        <a href="/my-bookings.php"><i class="fas fa-ticket-alt"></i> My Bookings</a>
-                        <a href="/profile.php"><i class="fas fa-user-edit"></i> Profile</a>
+                        <a href="<?php echo $base; ?>/my-bookings.php"><i class="fas fa-ticket-alt"></i> My Bookings</a>
+                        <a href="<?php echo $base; ?>/profile.php"><i class="fas fa-user-edit"></i> Profile</a>
                         <hr>
-                        <a href="/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="<?php echo $base; ?>/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>
             <?php else: ?>
-                <a href="/login.php" class="btn-header-login"><i class="fas fa-user"></i> Login</a>
-                <a href="/register.php" class="btn-header-signup">Sign Up</a>
+                <a href="<?php echo $base; ?>/login.php" class="btn-header-login"><i class="fas fa-user"></i> Login</a>
+                <a href="<?php echo $base; ?>/register.php" class="btn-header-signup">Sign Up</a>
             <?php endif; ?>
         </div>
 
@@ -89,20 +91,20 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 <!-- ═══ Mobile Sidebar ═══ -->
 <div class="mobile-sidebar" id="mobileSidebar">
     <div class="mobile-sidebar-header">
-        <span class="logo-primary">Travenso</span><span class="logo-accent">Travel</span>
+        <span class="logo-primary">Travenzo</span><span class="logo-accent">Travel</span>
         <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
     </div>
     <nav class="mobile-nav">
-        <a href="/"><i class="fas fa-plane"></i> Flights</a>
-        <a href="/about.php"><i class="fas fa-building"></i> About Us</a>
-        <a href="/contact.php"><i class="fas fa-headset"></i> Contact</a>
+        <a href="<?php echo $base; ?>/"><i class="fas fa-plane"></i> Flights</a>
+        <a href="<?php echo $base; ?>/about.php"><i class="fas fa-building"></i> About Us</a>
+        <a href="<?php echo $base; ?>/contact.php"><i class="fas fa-headset"></i> Contact</a>
         <hr>
         <?php if (isLoggedIn()): ?>
-            <a href="/my-bookings.php"><i class="fas fa-ticket-alt"></i> My Bookings</a>
-            <a href="/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <a href="<?php echo $base; ?>/my-bookings.php"><i class="fas fa-ticket-alt"></i> My Bookings</a>
+            <a href="<?php echo $base; ?>/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
         <?php else: ?>
-            <a href="/login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="/register.php"><i class="fas fa-user-plus"></i> Sign Up</a>
+            <a href="<?php echo $base; ?>/login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="<?php echo $base; ?>/register.php"><i class="fas fa-user-plus"></i> Sign Up</a>
         <?php endif; ?>
     </nav>
 </div>

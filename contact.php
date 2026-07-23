@@ -4,6 +4,7 @@
  */
 $pageTitle = 'Contact Us';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 $errors = [];
 $success = false;
@@ -94,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/contact.php" class="contact-form" novalidate>
+                <form method="POST" action="<?php echo $base; ?>/contact.php" class="contact-form" novalidate>
                     <?php echo csrfField(); ?>
 
                     <div class="form-row-2">

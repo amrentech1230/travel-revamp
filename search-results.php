@@ -5,6 +5,7 @@
  */
 $pageTitle = 'Flight Search Results';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 // Get search params
 $tripType   = sanitize($_GET['trip_type'] ?? 'oneway');
@@ -78,7 +79,7 @@ $cabinLabels = [
         </div>
 
         <!-- Modify Search Bar -->
-        <form class="modify-bar" action="/search-results.php" method="GET">
+        <form class="modify-bar" action="<?php echo $base; ?>/search-results.php" method="GET">
             <input type="text" name="origin_code" value="<?php echo $origin; ?>" placeholder="From" class="modify-input">
             <i class="fas fa-exchange-alt modify-swap"></i>
             <input type="text" name="destination_code" value="<?php echo $destination; ?>" placeholder="To" class="modify-input">
@@ -160,7 +161,7 @@ $cabinLabels = [
                             <i class="fas fa-plane-slash"></i>
                             <h3>No Flights Found</h3>
                             <p>We couldn't find flights for your search. Try different dates or routes.</p>
-                            <a href="/" class="btn-primary">Search Again</a>
+                            <a href="<?php echo $base; ?>/" class="btn-primary">Search Again</a>
                         </div>
                     <?php else: ?>
                         <?php foreach ($flights as $idx => $flight): ?>
@@ -202,7 +203,7 @@ $cabinLabels = [
                                     <span class="price-big"><?php echo formatPrice($flight['total_price']); ?></span>
                                     <small>per person</small>
                                 </div>
-                                <a href="/checkout.php?flight=<?php echo $idx; ?>" class="btn-book-flight">Book Now</a>
+                                <a href="<?php echo $base; ?>/checkout.php?flight=<?php echo $idx; ?>" class="btn-book-flight">Book Now</a>
                             </div>
 
                             <!-- Expandable Details -->

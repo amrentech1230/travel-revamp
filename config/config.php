@@ -13,6 +13,7 @@ define('SITE_URL', 'https://travenzotravel.com');
 define('SITE_EMAIL', 'support@travenzotravel.com');
 define('SITE_PHONE', '+1-888-TRAVENSO');
 define('SITE_ADDRESS', '500 Fifth Avenue, Suite 1200, New York, NY 10036, USA');
+define('BASE_PATH', '/travel-revamp'); // Base URL path for localhost
 
 // Mondee API Configuration
 define('MONDEE_API_URL', 'https://api.mondee.com/v2');
@@ -91,8 +92,12 @@ function requireLogin() {
     if (!isLoggedIn()) {
         $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
         setFlash('error', 'Please login to continue.');
-        redirect('/login.php');
+        redirect(BASE_PATH . '/login.php');
     }
+}
+
+function url($path = '') {
+    return BASE_PATH . '/' . ltrim($path, '/');
 }
 
 function currentUser() {

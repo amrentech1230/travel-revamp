@@ -1,15 +1,16 @@
 </main>
 <!-- ═══ Main Content End ═══ -->
+<?php $base = BASE_PATH; ?>
 
 <!-- ═══ Newsletter Section ═══ -->
 <section class="newsletter-section">
     <div class="container">
-        <div class="newsletter-box">
+        <div class="newsletter-box" data-aos="fade-up">
             <div class="newsletter-text">
                 <h3><i class="fas fa-paper-plane"></i> Get Exclusive Flight Deals</h3>
                 <p>Subscribe to our newsletter and never miss a deal on cheap flights.</p>
             </div>
-            <form class="newsletter-form" id="newsletterForm" method="POST" action="/ajax/newsletter.php">
+            <form class="newsletter-form" id="newsletterForm" method="POST" action="<?php echo $base; ?>/ajax/newsletter.php">
                 <input type="email" name="email" placeholder="Enter your email" required>
                 <button type="submit"><i class="fas fa-arrow-right"></i></button>
             </form>
@@ -24,7 +25,7 @@
             <!-- Col 1: Brand -->
             <div class="footer-col">
                 <div class="footer-brand">
-                    <span class="logo-primary">Travenso</span><span class="logo-accent">Travel</span>
+                    <span class="logo-primary">Travenzo</span><span class="logo-accent">Travel</span>
                 </div>
                 <p>Your trusted partner for booking domestic & international flights at the best prices. 24/7 customer support and instant confirmations.</p>
                 <div class="footer-social">
@@ -40,10 +41,10 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="/">Search Flights</a></li>
-                    <li><a href="/about.php">About Us</a></li>
-                    <li><a href="/contact.php">Contact Us</a></li>
-                    <li><a href="/login.php">My Account</a></li>
+                    <li><a href="<?php echo $base; ?>/">Search Flights</a></li>
+                    <li><a href="<?php echo $base; ?>/about.php">About Us</a></li>
+                    <li><a href="<?php echo $base; ?>/contact.php">Contact Us</a></li>
+                    <li><a href="<?php echo $base; ?>/login.php">My Account</a></li>
                 </ul>
             </div>
 
@@ -51,10 +52,10 @@
             <div class="footer-col">
                 <h4>Policies</h4>
                 <ul>
-                    <li><a href="/refund-policy.php">Refund Policy</a></li>
-                    <li><a href="/privacy-policy.php">Privacy Policy</a></li>
-                    <li><a href="/terms-conditions.php">Terms & Conditions</a></li>
-                    <li><a href="/disclaimer.php">Disclaimer</a></li>
+                    <li><a href="<?php echo $base; ?>/refund-policy.php">Refund Policy</a></li>
+                    <li><a href="<?php echo $base; ?>/privacy-policy.php">Privacy Policy</a></li>
+                    <li><a href="<?php echo $base; ?>/terms-conditions.php">Terms & Conditions</a></li>
+                    <li><a href="<?php echo $base; ?>/disclaimer.php">Disclaimer</a></li>
                 </ul>
             </div>
 
@@ -64,7 +65,7 @@
                 <ul class="footer-contact-list">
                     <li><i class="fas fa-map-marker-alt"></i> <?php echo SITE_ADDRESS; ?></li>
                     <li><i class="fas fa-phone-alt"></i> <?php echo SITE_PHONE; ?></li>
-                    <li><i class="fas fa-envelope"></i> <?php echo SITE_EMAIL; ?></li>
+                    <li><a href="mailto:<?php echo SITE_EMAIL; ?>"><i class="fas fa-envelope"></i> <?php echo SITE_EMAIL; ?></a></li>
                     <li><i class="fas fa-clock"></i> 24/7 Customer Support</li>
                 </ul>
             </div>
@@ -77,7 +78,6 @@
             <i class="fab fa-cc-mastercard"></i>
             <i class="fab fa-cc-amex"></i>
             <i class="fab fa-cc-discover"></i>
-            <img src="https://www.authorize.net/content/dam/anet-redesign/reseller/authorizenet-badge.png" alt="Authorize.Net" class="authnet-badge">
         </div>
 
         <!-- Copyright -->
@@ -91,8 +91,11 @@
 <!-- Back To Top -->
 <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
 
+<!-- AOS Animation Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init({ duration: 800, once: true, offset: 100 });</script>
+
 <!-- JavaScript -->
-<script src="/assets/js/main.js"></script>
-<?php if (isset($extraJS)) echo $extraJS; ?>
+<script src="<?php echo $base; ?>/assets/js/main.js"></script>
 </body>
 </html>

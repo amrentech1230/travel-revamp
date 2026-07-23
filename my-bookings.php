@@ -4,6 +4,7 @@
  */
 $pageTitle = 'My Bookings';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 requireLogin();
 
@@ -75,7 +76,7 @@ $bookings = $stmt->fetchAll();
                         <span class="pnr-badge"><i class="fas fa-barcode"></i> PNR: <?php echo $booking['mondee_pnr']; ?></span>
                         <?php endif; ?>
                         <?php if ($booking['status'] === 'confirmed'): ?>
-                        <a href="/contact.php?ref=<?php echo $booking['booking_ref']; ?>" class="btn-outline-sm">Request Cancel</a>
+                        <a href="<?php echo $base; ?>/contact.php?ref=<?php echo $booking['booking_ref']; ?>" class="btn-outline-sm">Request Cancel</a>
                         <?php endif; ?>
                     </div>
                 </div>
