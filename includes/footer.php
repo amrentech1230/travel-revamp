@@ -96,7 +96,7 @@
 <script>AOS.init({ duration: 800, once: true, offset: 100 });</script>
 
 <!-- Preloader Script -->
-<script>
+<!-- <script>
 window.addEventListener('load', function() {
     const preloader = document.getElementById('preloader');
     if (preloader) {
@@ -106,7 +106,7 @@ window.addEventListener('load', function() {
         }, 800);
     }
 });
-</script>
+</script> -->
 
 <!-- JavaScript -->
 <script src="<?php echo $base; ?>/assets/js/main.js"></script>

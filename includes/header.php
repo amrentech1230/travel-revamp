@@ -28,7 +28,7 @@ $base = BASE_PATH;
 <body class="page-<?php echo $currentPage; ?>">
 
 <!-- ═══ Page Preloader ═══ -->
-<div class="preloader" id="preloader">
+<!-- <div class="preloader" id="preloader">
     <div class="preloader-inner">
         <div class="plane-loader">
             <i class="fas fa-plane"></i>
@@ -37,7 +37,7 @@ $base = BASE_PATH;
         <p class="loader-text">TravenzoTravel</p>
         <span class="loader-sub">Finding best flights for you...</span>
     </div>
-</div>
+</div> -->
 
 <!-- ═══ Top Info Bar ═══ -->
 <div class="topbar">
