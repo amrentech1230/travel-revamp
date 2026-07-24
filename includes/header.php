@@ -27,6 +27,18 @@ $base = BASE_PATH;
 </head>
 <body class="page-<?php echo $currentPage; ?>">
 
+<!-- ═══ Page Preloader ═══ -->
+<div class="preloader" id="preloader">
+    <div class="preloader-inner">
+        <div class="plane-loader">
+            <i class="fas fa-plane"></i>
+        </div>
+        <div class="loader-trail"></div>
+        <p class="loader-text">TravenzoTravel</p>
+        <span class="loader-sub">Finding best flights for you...</span>
+    </div>
+</div>
+
 <!-- ═══ Top Info Bar ═══ -->
 <div class="topbar">
     <div class="container topbar-inner">

@@ -92,6 +92,41 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
+@keyframes fly-across {
+    0% { transform: translateX(-100%) translateY(10px) rotate(0deg); }
+    100% { transform: translateX(100vw) translateY(-20px) rotate(5deg); }
+}
+@keyframes loader-trail {
+    0% { width: 0; opacity: 1; }
+    50% { width: 120px; opacity: 0.7; }
+    100% { width: 0; opacity: 0; }
+}
+
+/* ═══ PAGE PRELOADER ═══ */
+.preloader {
+    position: fixed; inset: 0; z-index: 99999;
+    background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d1f3c 100%);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.preloader.loaded { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-inner { text-align: center; }
+.plane-loader {
+    font-size: 42px; color: var(--accent);
+    animation: float 1.2s ease-in-out infinite;
+    margin-bottom: 12px;
+}
+.plane-loader i { filter: drop-shadow(0 4px 12px rgba(255,193,7,0.4)); }
+.loader-trail {
+    width: 80px; height: 3px; margin: 0 auto 16px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    border-radius: 2px; animation: loader-trail 1.5s ease-in-out infinite;
+}
+.loader-text {
+    color: var(--white); font-size: 20px; font-weight: 700;
+    letter-spacing: 1px; margin-bottom: 4px;
+}
+.loader-sub { color: var(--gray-500); font-size: 12px; }
 
 
 /* ─── Top Bar ─── */
@@ -203,9 +238,9 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 .flash-close { background: none; border: none; font-size: 16px; opacity: 0.7; }
 
 
-/* ═══ HERO SECTION with Travel Background Image ═══ */
+/* ═══ HERO SECTION with Airport/Runway Background ═══ */
 .hero {
-    background: url('https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1600&q=80') center/cover no-repeat;
+    background: url('https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=1600&q=80') center/cover no-repeat;
     padding: 100px 0 140px;
     position: relative;
     overflow: hidden;
@@ -213,15 +248,13 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(26,26,46,0.85) 0%, rgba(22,33,62,0.80) 50%, rgba(0,100,200,0.6) 100%);
+    background: linear-gradient(135deg, rgba(10,22,40,0.88) 0%, rgba(22,33,62,0.82) 50%, rgba(0,80,180,0.6) 100%);
     z-index: 1;
 }
 .hero .container { position: relative; z-index: 2; }
 .hero-bg {
     position: absolute; inset: 0; z-index: 0;
-    background: url('https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1600&q=80') center/cover;
-    animation: float 6s ease-in-out infinite;
-    transform-origin: center;
+    background: url('https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=1600&q=80') center/cover;
 }
 .hero-particles {
     position: absolute; inset: 0; z-index: 1;
@@ -420,8 +453,55 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 
 /* ═══ SECTIONS ═══ */
 .section-features, .section-popular, .section-offers,
-.section-steps, .section-testimonials { padding: 70px 0; }
-.section-popular, .section-steps { background: var(--white); }
+.section-steps, .section-testimonials { padding: 70px 0; position: relative; }
+
+/* Features - Airport terminal interior background */
+.section-features {
+    background: url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?w=1600&q=80') center/cover no-repeat fixed;
+    position: relative;
+}
+.section-features::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(248,249,250,0.93);
+}
+.section-features .container { position: relative; z-index: 2; }
+
+/* Popular Routes - clean white */
+.section-popular { background: var(--white); }
+
+/* Offers - Boarding pass / ticket pattern */
+.section-offers {
+    background: url('https://images.unsplash.com/photo-1583418007992-a8e33a92e7ad?w=1600&q=80') center/cover no-repeat fixed;
+    position: relative;
+}
+.section-offers::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(248,249,250,0.94);
+}
+.section-offers .container { position: relative; z-index: 2; }
+
+/* Steps - Airport departure board background */
+.section-steps {
+    background: url('https://images.unsplash.com/photo-1540339832862-474599807836?w=1600&q=80') center/cover no-repeat;
+    position: relative;
+}
+.section-steps::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.95);
+}
+.section-steps .container { position: relative; z-index: 2; }
+
+/* Testimonials - Sky/clouds */
+.section-testimonials {
+    background: url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=1600&q=80') center/cover no-repeat fixed;
+    position: relative;
+}
+.section-testimonials::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(248,249,250,0.92);
+}
+.section-testimonials .container { position: relative; z-index: 2; }
+
 .section-title { text-align: center; font-size: 28px; margin-bottom: 12px; }
 .section-title span { color: var(--primary); }
 .section-subtitle { text-align: center; color: var(--gray-600); margin-bottom: 40px; }
@@ -486,14 +566,14 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 .btn-route-book:hover { background: var(--primary-dark); color: var(--white); transform: scale(1.05); }
 
 
-/* ─── Travel CTA Banner ─── */
+/* ─── Travel CTA Banner - Airplane window view ─── */
 .travel-cta-banner {
-    background: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600&q=80') center/cover no-repeat fixed;
+    background: url('https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1600&q=80') center/cover no-repeat fixed;
     padding: 80px 0; position: relative; text-align: center;
 }
 .travel-cta-banner .cta-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,100,200,0.85), rgba(26,26,46,0.8));
+    background: linear-gradient(135deg, rgba(0,60,150,0.88), rgba(10,22,40,0.85));
 }
 .travel-cta-banner .container { position: relative; z-index: 2; }
 .cta-content h2 { color: var(--white); font-size: 32px; margin-bottom: 12px; }
@@ -556,8 +636,15 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 
 
 /* ═══ NEWSLETTER & FOOTER ═══ */
-.newsletter-section { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 50px 0; }
-.newsletter-box { display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+.newsletter-section {
+    background: url('https://images.unsplash.com/photo-1559268950-2d7ceb2efa3a?w=1600&q=80') center/cover no-repeat;
+    padding: 50px 0; position: relative;
+}
+.newsletter-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,100,220,0.92), rgba(0,60,150,0.88));
+}
+.newsletter-box { display: flex; justify-content: space-between; align-items: center; gap: 30px; position: relative; z-index: 2; }
 .newsletter-text h3 { color: var(--white); font-size: 22px; margin-bottom: 4px; }
 .newsletter-text p { color: rgba(255,255,255,0.8); font-size: 14px; }
 .newsletter-form { display: flex; gap: 0; }
@@ -586,29 +673,29 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 .footer-powered { margin-top: 4px; opacity: 0.7; }
 
 
-/* ═══ PAGE BANNER (About, Contact, Policy pages) with Travel Image ═══ */
+/* ═══ PAGE BANNER - Airport runway with planes ═══ */
 .page-banner {
-    background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=80') center/cover no-repeat;
-    padding: 60px 0; text-align: center; position: relative;
+    background: url('https://images.unsplash.com/photo-1583418007992-a8e33a92e7ad?w=1600&q=80') center/cover no-repeat;
+    padding: 65px 0; text-align: center; position: relative;
 }
 .page-banner::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(26,26,46,0.9), rgba(0,100,200,0.7));
+    background: linear-gradient(135deg, rgba(10,22,40,0.92), rgba(0,80,180,0.75));
 }
 .page-banner .container { position: relative; z-index: 2; }
 .page-banner h1 { color: var(--white); font-size: 34px; margin-bottom: 8px; }
 .page-banner h1 span { color: var(--accent); }
 .page-banner p { color: rgba(255,255,255,0.8); font-size: 14px; }
 
-/* ═══ AUTH PAGES ═══ */
+/* ═══ AUTH PAGES - Airport lounge background ═══ */
 .auth-page {
     padding: 50px 0;
-    background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover no-repeat fixed;
+    background: url('https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?w=1600&q=80') center/cover no-repeat fixed;
     position: relative;
 }
 .auth-page::before {
     content: ''; position: absolute; inset: 0;
-    background: rgba(248,249,250,0.92);
+    background: rgba(248,249,250,0.88);
 }
 .auth-page .container { position: relative; z-index: 2; }
 .auth-wrapper { display: grid; grid-template-columns: 1fr 1.3fr; background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
@@ -618,8 +705,8 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
     position: relative; overflow: hidden;
 }
 .auth-sidebar::before {
-    content: ''; position: absolute; inset: 0; opacity: 0.15;
-    background: url('https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=600&q=60') center/cover;
+    content: ''; position: absolute; inset: 0; opacity: 0.2;
+    background: url('https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=600&q=60') center/cover;
 }
 .auth-sidebar-content { position: relative; z-index: 2; }
 .auth-big-icon { font-size: 48px; color: var(--accent); display: block; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
@@ -673,14 +760,22 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 .about-content p { font-size: 14px; color: var(--gray-600); margin-bottom: 12px; line-height: 1.8; }
 .about-img-placeholder {
     width: 100%; aspect-ratio: 1; border-radius: var(--radius-xl);
-    background: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&q=80') center/cover;
+    background: url('https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=500&q=80') center/cover;
     position: relative; overflow: hidden;
 }
 .about-img-placeholder::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(135deg, rgba(0,140,255,0.1), transparent);
 }
-.about-stats { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 50px 0; }
+.about-stats {
+    background: url('https://images.unsplash.com/photo-1562059392-096320bccc7e?w=1600&q=80') center/cover no-repeat;
+    padding: 50px 0; position: relative;
+}
+.about-stats::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,100,220,0.9), rgba(0,60,150,0.88));
+}
+.about-stats .container { position: relative; z-index: 2; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center; }
 .stat-card { transition: var(--transition); }
 .stat-card:hover { transform: scale(1.05); }

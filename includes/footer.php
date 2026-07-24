@@ -95,6 +95,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>AOS.init({ duration: 800, once: true, offset: 100 });</script>
 
+<!-- Preloader Script -->
+<script>
+window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        setTimeout(function() {
+            preloader.classList.add('loaded');
+            setTimeout(() => preloader.remove(), 600);
+        }, 800);
+    }
+});
+</script>
+
 <!-- JavaScript -->
 <script src="<?php echo $base; ?>/assets/js/main.js"></script>
 </body>
