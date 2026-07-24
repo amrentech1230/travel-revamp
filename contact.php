@@ -39,52 +39,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<section class="page-banner">
+<!-- Banner - Airport Check-in Counter -->
+<section class="page-banner banner-contact">
     <div class="container">
-        <h1>Contact <span>Us</span></h1>
-        <p>We're here to help 24/7. Reach out to us anytime.</p>
+        <h1 data-aos="fade-down">Contact <span>Us</span></h1>
+        <p data-aos="fade-up">We're here to help 24/7. Reach out to us anytime.</p>
     </div>
 </section>
 
-<section class="contact-section">
+<!-- Contact Info Cards - Airplane Wing Background -->
+<section class="contact-cards-section">
     <div class="container">
-        <div class="contact-grid">
-            <!-- Contact Info Cards -->
-            <div class="contact-info">
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
-                    <h3>Call Us</h3>
-                    <p><?php echo SITE_PHONE; ?></p>
-                    <small>Available 24/7</small>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
-                    <h3>Email Us</h3>
-                    <p><?php echo SITE_EMAIL; ?></p>
-                    <small>Response within 24 hours</small>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <h3>Visit Us</h3>
-                    <p><?php echo SITE_ADDRESS; ?></p>
-                    <small>Mon-Fri: 9AM - 6PM</small>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon"><i class="fas fa-comments"></i></div>
-                    <h3>Live Chat</h3>
-                    <p>Chat with our agents</p>
-                    <small>Available 24/7</small>
+        <div class="contact-info-grid" data-aos="fade-up">
+            <div class="contact-info-card">
+                <div class="cic-icon"><i class="fas fa-phone-alt"></i></div>
+                <h3>Call Us</h3>
+                <p class="cic-main"><?php echo SITE_PHONE; ?></p>
+                <span class="cic-sub">Available 24/7 - Toll Free</span>
+            </div>
+            <div class="contact-info-card">
+                <div class="cic-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email Us</h3>
+                <p class="cic-main"><?php echo SITE_EMAIL; ?></p>
+                <span class="cic-sub">Response within 2 hours</span>
+            </div>
+            <div class="contact-info-card">
+                <div class="cic-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Visit Us</h3>
+                <p class="cic-main"><?php echo SITE_ADDRESS; ?></p>
+                <span class="cic-sub">Mon-Fri: 9AM - 6PM</span>
+            </div>
+            <div class="contact-info-card">
+                <div class="cic-icon"><i class="fas fa-comments"></i></div>
+                <h3>Live Chat</h3>
+                <p class="cic-main">Chat with our agents</p>
+                <span class="cic-sub">Instant response 24/7</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section - Travel Map Background -->
+<section class="contact-form-section">
+    <div class="container">
+        <div class="contact-form-grid">
+            <!-- Left Image Panel -->
+            <div class="contact-left-panel" data-aos="fade-right">
+                <div class="clp-image" style="background-image: url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&q=80')"></div>
+                <div class="clp-overlay">
+                    <h3><i class="fas fa-headset"></i> Get in Touch</h3>
+                    <p>Our team of travel experts is ready to assist you with any query - booking, cancellation, refund, or general inquiry.</p>
+                    <ul class="clp-list">
+                        <li><i class="fas fa-check-circle"></i> Average response time: 2 hours</li>
+                        <li><i class="fas fa-check-circle"></i> Multilingual support available</li>
+                        <li><i class="fas fa-check-circle"></i> Dedicated booking support</li>
+                        <li><i class="fas fa-check-circle"></i> Refund tracking assistance</li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Contact Form -->
-            <div class="contact-form-wrapper">
+            <!-- Right Form -->
+            <div class="contact-form-wrapper" data-aos="fade-left">
                 <h2>Send Us a Message</h2>
 
                 <?php if ($success): ?>
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle"></i>
-                    Thank you! Your message has been sent. We'll get back to you within 24 hours.
+                    Thank you! Your message has been sent. We'll get back to you within 2 hours.
                 </div>
                 <?php endif; ?>
 
@@ -137,13 +158,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <div class="form-group">
                         <label>Message *</label>
-                        <textarea name="message" rows="5" placeholder="Describe your query..." required></textarea>
+                        <textarea name="message" rows="5" placeholder="Describe your query in detail..." required></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary">
+                    <button type="submit" class="btn-primary btn-contact-submit">
                         <i class="fas fa-paper-plane"></i> Send Message
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map/Location Section - City Skyline Background -->
+<section class="contact-map-section">
+    <div class="container">
+        <div class="map-placeholder" data-aos="fade-up">
+            <div class="map-content">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Our Office</h3>
+                <p><?php echo SITE_ADDRESS; ?></p>
+                <a href="https://maps.google.com" target="_blank" class="btn-primary"><i class="fas fa-directions"></i> Get Directions</a>
             </div>
         </div>
     </div>
