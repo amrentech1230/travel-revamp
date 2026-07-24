@@ -123,26 +123,98 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ═══ Airport Autocomplete ═══
     const airports = [
+        // India
         { iata: 'DEL', city: 'New Delhi', name: 'Indira Gandhi International' },
-        { iata: 'BOM', city: 'Mumbai', name: 'Chhatrapati Shivaji' },
+        { iata: 'BOM', city: 'Mumbai', name: 'Chhatrapati Shivaji Maharaj' },
         { iata: 'BLR', city: 'Bangalore', name: 'Kempegowda International' },
         { iata: 'MAA', city: 'Chennai', name: 'Chennai International' },
         { iata: 'CCU', city: 'Kolkata', name: 'Netaji Subhas Chandra Bose' },
         { iata: 'HYD', city: 'Hyderabad', name: 'Rajiv Gandhi International' },
         { iata: 'GOI', city: 'Goa', name: 'Dabolim Airport' },
         { iata: 'AMD', city: 'Ahmedabad', name: 'Sardar Vallabhbhai Patel' },
+        { iata: 'PNQ', city: 'Pune', name: 'Pune Airport' },
+        { iata: 'COK', city: 'Kochi', name: 'Cochin International' },
+        { iata: 'JAI', city: 'Jaipur', name: 'Jaipur International' },
+        { iata: 'LKO', city: 'Lucknow', name: 'Chaudhary Charan Singh' },
+        { iata: 'IXC', city: 'Chandigarh', name: 'Chandigarh International' },
+        { iata: 'TRV', city: 'Thiruvananthapuram', name: 'Trivandrum International' },
+        { iata: 'VNS', city: 'Varanasi', name: 'Lal Bahadur Shastri' },
+        { iata: 'SXR', city: 'Srinagar', name: 'Sheikh ul-Alam International' },
+        { iata: 'GAU', city: 'Guwahati', name: 'Lokpriya Gopinath Bordoloi' },
+        { iata: 'BBI', city: 'Bhubaneswar', name: 'Biju Patnaik International' },
+        // United States
         { iata: 'JFK', city: 'New York', name: 'John F. Kennedy International' },
         { iata: 'LAX', city: 'Los Angeles', name: 'Los Angeles International' },
         { iata: 'ORD', city: 'Chicago', name: "O'Hare International" },
         { iata: 'SFO', city: 'San Francisco', name: 'San Francisco International' },
+        { iata: 'ATL', city: 'Atlanta', name: 'Hartsfield-Jackson International' },
+        { iata: 'DFW', city: 'Dallas', name: 'Dallas/Fort Worth International' },
+        { iata: 'MIA', city: 'Miami', name: 'Miami International' },
+        { iata: 'BOS', city: 'Boston', name: 'Boston Logan International' },
+        { iata: 'SEA', city: 'Seattle', name: 'Seattle-Tacoma International' },
+        { iata: 'DEN', city: 'Denver', name: 'Denver International' },
+        { iata: 'LAS', city: 'Las Vegas', name: 'Harry Reid International' },
+        { iata: 'EWR', city: 'Newark', name: 'Newark Liberty International' },
+        { iata: 'IAD', city: 'Washington DC', name: 'Washington Dulles International' },
+        // Europe
         { iata: 'LHR', city: 'London', name: 'Heathrow Airport' },
+        { iata: 'LGW', city: 'London', name: 'Gatwick Airport' },
+        { iata: 'CDG', city: 'Paris', name: 'Charles de Gaulle' },
+        { iata: 'FRA', city: 'Frankfurt', name: 'Frankfurt Airport' },
+        { iata: 'AMS', city: 'Amsterdam', name: 'Schiphol Airport' },
+        { iata: 'BCN', city: 'Barcelona', name: 'Barcelona-El Prat' },
+        { iata: 'MAD', city: 'Madrid', name: 'Madrid-Barajas' },
+        { iata: 'FCO', city: 'Rome', name: 'Leonardo da Vinci' },
+        { iata: 'MXP', city: 'Milan', name: 'Milan Malpensa' },
+        { iata: 'MUC', city: 'Munich', name: 'Munich Airport' },
+        { iata: 'ZRH', city: 'Zurich', name: 'Zurich Airport' },
+        { iata: 'IST', city: 'Istanbul', name: 'Istanbul Airport' },
+        { iata: 'ATH', city: 'Athens', name: 'Athens International' },
+        { iata: 'VIE', city: 'Vienna', name: 'Vienna International' },
+        { iata: 'DUB', city: 'Dublin', name: 'Dublin Airport' },
+        { iata: 'CPH', city: 'Copenhagen', name: 'Copenhagen Airport' },
+        { iata: 'LIS', city: 'Lisbon', name: 'Lisbon Portela' },
+        // Middle East
         { iata: 'DXB', city: 'Dubai', name: 'Dubai International' },
+        { iata: 'AUH', city: 'Abu Dhabi', name: 'Abu Dhabi International' },
+        { iata: 'DOH', city: 'Doha', name: 'Hamad International' },
+        { iata: 'RUH', city: 'Riyadh', name: 'King Khalid International' },
+        { iata: 'JED', city: 'Jeddah', name: 'King Abdulaziz International' },
+        { iata: 'BAH', city: 'Manama', name: 'Bahrain International' },
+        { iata: 'MCT', city: 'Muscat', name: 'Muscat International' },
+        { iata: 'KWI', city: 'Kuwait City', name: 'Kuwait International' },
+        // Asia Pacific
         { iata: 'SIN', city: 'Singapore', name: 'Changi Airport' },
         { iata: 'BKK', city: 'Bangkok', name: 'Suvarnabhumi Airport' },
-        { iata: 'NRT', city: 'Tokyo', name: 'Narita International' },
-        { iata: 'SYD', city: 'Sydney', name: 'Sydney Kingsford Smith' },
-        { iata: 'CDG', city: 'Paris', name: 'Charles de Gaulle' },
         { iata: 'HKG', city: 'Hong Kong', name: 'Hong Kong International' },
+        { iata: 'NRT', city: 'Tokyo', name: 'Narita International' },
+        { iata: 'HND', city: 'Tokyo', name: 'Haneda Airport' },
+        { iata: 'ICN', city: 'Seoul', name: 'Incheon International' },
+        { iata: 'PEK', city: 'Beijing', name: 'Beijing Capital International' },
+        { iata: 'PVG', city: 'Shanghai', name: 'Shanghai Pudong International' },
+        { iata: 'KUL', city: 'Kuala Lumpur', name: 'KLIA International' },
+        { iata: 'CGK', city: 'Jakarta', name: 'Soekarno-Hatta International' },
+        { iata: 'DPS', city: 'Bali', name: 'Ngurah Rai International' },
+        { iata: 'MNL', city: 'Manila', name: 'Ninoy Aquino International' },
+        { iata: 'TPE', city: 'Taipei', name: 'Taiwan Taoyuan International' },
+        { iata: 'CMB', city: 'Colombo', name: 'Bandaranaike International' },
+        { iata: 'DAC', city: 'Dhaka', name: 'Hazrat Shahjalal International' },
+        { iata: 'KTM', city: 'Kathmandu', name: 'Tribhuvan International' },
+        // Australia
+        { iata: 'SYD', city: 'Sydney', name: 'Sydney Kingsford Smith' },
+        { iata: 'MEL', city: 'Melbourne', name: 'Melbourne Tullamarine' },
+        { iata: 'AKL', city: 'Auckland', name: 'Auckland Airport' },
+        // Africa
+        { iata: 'JNB', city: 'Johannesburg', name: 'O.R. Tambo International' },
+        { iata: 'CAI', city: 'Cairo', name: 'Cairo International' },
+        { iata: 'NBO', city: 'Nairobi', name: 'Jomo Kenyatta International' },
+        // Americas
+        { iata: 'YYZ', city: 'Toronto', name: 'Toronto Pearson International' },
+        { iata: 'YVR', city: 'Vancouver', name: 'Vancouver International' },
+        { iata: 'MEX', city: 'Mexico City', name: 'Mexico City International' },
+        { iata: 'CUN', city: 'Cancun', name: 'Cancun International' },
+        { iata: 'GRU', city: 'Sao Paulo', name: 'Guarulhos International' },
+        { iata: 'EZE', city: 'Buenos Aires', name: 'Ministro Pistarini International' },
     ];
 
     function setupAutocomplete(inputId, codeId, suggestionsId) {
@@ -159,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 a.iata.toLowerCase().includes(query) ||
                 a.city.toLowerCase().includes(query) ||
                 a.name.toLowerCase().includes(query)
-            ).slice(0, 6);
+            ).slice(0, 8);
 
             if (matches.length === 0) { suggestions.classList.remove('active'); return; }
 

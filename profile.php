@@ -4,6 +4,7 @@
  */
 $pageTitle = 'My Profile';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 requireLogin();
 
@@ -88,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p><?php echo $user['email']; ?></p>
                 </div>
                 <nav class="profile-nav">
-                    <a href="/profile.php" class="active"><i class="fas fa-user"></i> Profile</a>
-                    <a href="/my-bookings.php"><i class="fas fa-ticket-alt"></i> My Bookings</a>
-                    <a href="/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a href="<?php echo $base; ?>/profile.php" class="active"><i class="fas fa-user"></i> Profile</a>
+                    <a href="<?php echo $base; ?>/my-bookings.php"><i class="fas fa-ticket-alt"></i> My Bookings</a>
+                    <a href="<?php echo $base; ?>/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </nav>
             </aside>
 
@@ -106,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/profile.php" class="profile-form" novalidate>
+                <form method="POST" action="<?php echo $base; ?>/profile.php" class="profile-form" novalidate>
                     <?php echo csrfField(); ?>
 
                     <h2>Personal Information</h2>

@@ -4,6 +4,7 @@
  */
 $pageTitle = 'About Us';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 ?>
 
 <section class="page-banner">

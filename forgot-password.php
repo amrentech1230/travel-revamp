@@ -4,6 +4,7 @@
  */
 $pageTitle = 'Forgot Password';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 if (isLoggedIn()) redirect('/');
 
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="confirm-icon"><i class="fas fa-envelope"></i></div>
                 <h2>Check Your Email</h2>
                 <p>If an account with that email exists, we've sent a password reset link. Please check your inbox and spam folder.</p>
-                <a href="/login.php" class="btn-primary" style="margin-top:20px;">Back to Login</a>
+                <a href="<?php echo $base; ?>/login.php" class="btn-primary" style="margin-top:20px;">Back to Login</a>
             </div>
             <?php else: ?>
             <div class="forgot-form-box">
@@ -60,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/forgot-password.php" novalidate>
+                <form method="POST" action="<?php echo $base; ?>/forgot-password.php" novalidate>
                     <?php echo csrfField(); ?>
                     <div class="form-group">
                         <label>Email Address *</label>
@@ -75,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
 
                 <div class="auth-footer-link">
-                    Remember your password? <a href="/login.php">Login here</a>
+                    Remember your password? <a href="<?php echo $base; ?>/login.php">Login here</a>
                 </div>
             </div>
             <?php endif; ?>

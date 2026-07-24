@@ -4,6 +4,7 @@
  */
 $pageTitle = 'Create Account';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 // Redirect if already logged in
 if (isLoggedIn()) {
@@ -92,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/register.php" class="auth-form" id="registerForm" novalidate>
+                <form method="POST" action="<?php echo $base; ?>/register.php" class="auth-form" id="registerForm" novalidate>
                     <?php echo csrfField(); ?>
 
                     <div class="form-row-2">
@@ -151,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label class="checkbox-label">
                             <input type="checkbox" name="agree_terms" value="1" required>
                             <span class="checkmark"></span>
-                            I agree to the <a href="/terms-conditions.php" target="_blank">Terms & Conditions</a> and <a href="/privacy-policy.php" target="_blank">Privacy Policy</a>
+                            I agree to the <a href="<?php echo $base; ?>/terms-conditions.php" target="_blank">Terms & Conditions</a> and <a href="<?php echo $base; ?>/privacy-policy.php" target="_blank">Privacy Policy</a>
                         </label>
                     </div>
 
@@ -161,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
 
                 <div class="auth-footer-link">
-                    Already have an account? <a href="/login.php">Login here</a>
+                    Already have an account? <a href="<?php echo $base; ?>/login.php">Login here</a>
                 </div>
             </div>
         </div>

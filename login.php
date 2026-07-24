@@ -4,6 +4,7 @@
  */
 $pageTitle = 'Login';
 require_once 'includes/header.php';
+$base = BASE_PATH;
 
 // Redirect if already logged in
 if (isLoggedIn()) {
@@ -88,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <?php endif; ?>
 
-                <form method="POST" action="/login.php" class="auth-form" id="loginForm" novalidate>
+                <form method="POST" action="<?php echo $base; ?>/login.php" class="auth-form" id="loginForm" novalidate>
                     <?php echo csrfField(); ?>
 
                     <div class="form-group">
@@ -123,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
 
                 <div class="auth-footer-link">
-                    Don't have an account? <a href="/register.php">Create one now</a>
+                    Don't have an account? <a href="<?php echo $base; ?>/register.php">Create one now</a>
                 </div>
             </div>
         </div>
