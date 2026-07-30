@@ -340,12 +340,17 @@ h1,h2,h3,h4,h5,h6 { color: var(--gray-900); font-weight: 600; }
 .airport-suggestions {
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-lg);
-    max-height: 250px; overflow-y: auto; z-index: 50; display: none;
+    max-height: 280px; overflow-y: auto; z-index: 50; display: none;
 }
 .airport-suggestions.active { display: block; }
-.airport-item { padding: 10px 12px; cursor: pointer; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; }
-.airport-item:hover { background: var(--primary-light); }
-.airport-item .code { font-weight: 700; color: var(--primary); }
+.airport-item { padding: 10px 12px; cursor: pointer; border-bottom: 1px solid var(--gray-100); display: flex; justify-content: space-between; align-items: center; transition: background 0.15s; }
+.airport-item:hover, .airport-item.highlighted { background: var(--primary-light); }
+.airport-item .code { font-weight: 700; color: var(--primary); font-size: 15px; }
+.airport-item .airport-info { flex: 1; }
+.airport-item .airport-info strong { font-size: 13px; color: var(--gray-900); }
+.airport-item .airport-info small { color: var(--gray-600); font-size: 11px; }
+.airport-item.no-results { justify-content: center; cursor: default; color: var(--gray-600); padding: 14px; }
+.airport-item.no-results:hover { background: var(--white); }
 
 .btn-search-flights {
     width: 100%; margin-top: 20px; padding: 15px; background: linear-gradient(135deg, var(--secondary), #ff8c5a);
