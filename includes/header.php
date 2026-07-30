@@ -22,6 +22,9 @@ $base = BASE_PATH;
     <!-- AOS Animate On Scroll -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
+    <!-- Base Path for JS -->
+    <meta name="base-path" content="<?php echo $base; ?>">
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="<?php echo $base; ?>/assets/css/style.css">
 </head>
