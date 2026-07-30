@@ -24,6 +24,9 @@ $base = BASE_PATH;
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="<?php echo $base; ?>/assets/css/style.css">
+
+    <!-- Pass PHP constants to JavaScript -->
+    <script>const BASE_PATH = '<?php echo $base; ?>';</script>
 </head>
 <body class="page-<?php echo $currentPage; ?>">
 
