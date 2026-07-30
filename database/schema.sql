@@ -30,7 +30,9 @@ CREATE TABLE users (
 CREATE TABLE bookings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     booking_ref VARCHAR(20) NOT NULL UNIQUE,
-    user_id INT NOT NULL,
+    user_id INT DEFAULT NULL,
+    guest_email VARCHAR(255) DEFAULT NULL,
+    guest_phone VARCHAR(20) DEFAULT NULL,
     mondee_pnr VARCHAR(50),
     trip_type ENUM('oneway','roundtrip','multicity') DEFAULT 'oneway',
     origin_code VARCHAR(10) NOT NULL,
@@ -58,10 +60,11 @@ CREATE TABLE bookings (
     status ENUM('pending','confirmed','cancelled','refunded','failed') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
     INDEX idx_ref (booking_ref),
     INDEX idx_user (user_id),
-    INDEX idx_status (status)
+    INDEX idx_status (status),
+    INDEX idx_guest_email (guest_email)
 ) ENGINE=InnoDB;
 
 -- Passengers
@@ -87,7 +90,7 @@ CREATE TABLE passengers (
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     booking_id INT NOT NULL,
-    user_id INT NOT NULL,
+    user_id INT DEFAULT NULL,
     transaction_id VARCHAR(100) UNIQUE,
     authnet_trans_id VARCHAR(100),
     amount DECIMAL(10,2) NOT NULL,
@@ -100,7 +103,7 @@ CREATE TABLE payments (
     response_message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
     INDEX idx_trans (transaction_id)
 ) ENGINE=InnoDB;
 

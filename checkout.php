@@ -7,8 +7,8 @@ $pageTitle = 'Complete Your Booking';
 require_once 'includes/header.php';
 $base = BASE_PATH;
 
-// Must be logged in
-requireLogin();
+// Login is optional - guests can checkout too
+$isGuest = !isLoggedIn();
 
 // Get selected flight
 $flightIdx = (int)($_GET['flight'] ?? -1);
@@ -74,6 +74,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'Complete card details are required.';
         }
 
+        // Guest contact info
+        $contactEmail = '';
+        $contactPhone = '';
+        if ($isGuest) {
+            $contactEmail = sanitize($_POST['guest_email'] ?? '');
+            $contactPhone = sanitize($_POST['guest_phone'] ?? '');
+            if (empty($contactEmail) || !filter_var($contactEmail, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = 'A valid email address is required.';
+            }
+            if (empty($contactPhone)) {
+                $errors[] = 'A phone number is required.';
+            }
+        } else {
+            $contactEmail = $_SESSION['user_email'];
+            $contactPhone = '';
+        }
+
 
         if (empty($errors)) {
             $db = getDB();
@@ -89,13 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($payResult['success']) {
                 // Book via Mondee API
                 $mondee = new MondeeAPI();
-                $contact = ['email' => $_SESSION['user_email'], 'phone' => $billing['first_name']];
+                $contact = ['email' => $contactEmail, 'phone' => $contactPhone];
                 $mondeeResult = $mondee->createBooking($flight, $passengers, $contact);
 
                 // Save booking to DB
-                $stmt = $db->prepare("INSERT INTO bookings (booking_ref, user_id, mondee_pnr, trip_type, origin_code, origin_city, destination_code, destination_city, departure_date, return_date, cabin_class, airline_name, airline_code, flight_number, departure_time, arrival_time, duration, stops, adults, children, infants, base_fare, taxes, service_fee, total_amount, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                $userId = isLoggedIn() ? $_SESSION['user_id'] : null;
+                $stmt = $db->prepare("INSERT INTO bookings (booking_ref, user_id, guest_email, guest_phone, mondee_pnr, trip_type, origin_code, origin_city, destination_code, destination_city, departure_date, return_date, cabin_class, airline_name, airline_code, flight_number, departure_time, arrival_time, duration, stops, adults, children, infants, base_fare, taxes, service_fee, total_amount, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 $stmt->execute([
-                    $bookingRef, $_SESSION['user_id'],
+                    $bookingRef, $userId, $contactEmail, $contactPhone,
                     $mondeeResult['pnr'] ?? null, $searchParams['trip_type'],
                     $searchParams['origin'], $searchParams['origin'],
                     $searchParams['destination'], $searchParams['destination'],
@@ -118,10 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Save payment
                 $transId = generateRef('TXN');
                 $stmt = $db->prepare("INSERT INTO payments (booking_id, user_id, transaction_id, authnet_trans_id, amount, payment_method, card_last_four, card_type, status, response_code) VALUES (?,?,?,?,?,?,?,?,?,?)");
-                $stmt->execute([$bookingId, $_SESSION['user_id'], $transId, $payResult['transaction_id'], $totalAmount, 'credit_card', $payResult['card_last_four'] ?? '', $payResult['card_type'] ?? '', 'success', $payResult['response_code'] ?? '1']);
+                $stmt->execute([$bookingId, $userId, $transId, $payResult['transaction_id'], $totalAmount, 'credit_card', $payResult['card_last_four'] ?? '', $payResult['card_type'] ?? '', 'success', $payResult['response_code'] ?? '1']);
 
                 $bookingSuccess = true;
                 $_SESSION['last_booking_ref'] = $bookingRef;
+                $_SESSION['last_booking_email'] = $contactEmail;
             } else {
                 $errors[] = 'Payment failed: ' . ($payResult['error'] ?? 'Unknown error');
             }
@@ -161,9 +180,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <strong><?php echo formatPrice($totalAmount); ?></strong>
                 </div>
             </div>
-            <p class="confirm-email"><i class="fas fa-envelope"></i> Confirmation sent to <?php echo $_SESSION['user_email']; ?></p>
+            <p class="confirm-email"><i class="fas fa-envelope"></i> Confirmation sent to <?php echo $_SESSION['last_booking_email'] ?? ($_SESSION['user_email'] ?? ''); ?></p>
             <div class="confirm-actions">
+                <?php if (isLoggedIn()): ?>
                 <a href="<?php echo $base; ?>/my-bookings.php" class="btn-primary">View My Bookings</a>
+                <?php endif; ?>
                 <a href="<?php echo $base; ?>/" class="btn-outline">Search More Flights</a>
             </div>
         </div>
@@ -210,6 +231,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
 
+
+                    <!-- Guest Contact Info -->
+                    <?php if ($isGuest): ?>
+                    <div class="checkout-section">
+                        <h2><i class="fas fa-envelope"></i> Contact Information</h2>
+                        <p class="section-note">Since you're checking out as a guest, please provide your contact details for booking confirmation.</p>
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label>Email Address *</label>
+                                <input type="email" name="guest_email" required placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number *</label>
+                                <input type="tel" name="guest_phone" required placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                    </div>
+                    <?php endif; ?>
 
                     <!-- Passenger Details -->
                     <div class="checkout-section">
